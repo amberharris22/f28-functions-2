@@ -141,7 +141,7 @@ uniq(names, uniqArr => console.log(`The new names array with all the duplicate i
 */
 
 // CODE HERE 
-
+const each = (arr, callb) => arr.forEach((element, index) => callb(element, index))
 
 /*
   Invoke the each function, passing in the names array and a callback function.
@@ -151,7 +151,7 @@ uniq(names, uniqArr => console.log(`The new names array with all the duplicate i
 */
 
 // CODE HERE
-
+each(names, (element, index) => console.log(`The item at index ${index} is &{element}`))
 
 ////////// PROBLEM 7 //////////
 
@@ -159,7 +159,6 @@ uniq(names, uniqArr => console.log(`The new names array with all the duplicate i
   Write a function called getUserById that takes in three parameters: an array of objects (users), an id and a callback, and searches for the user with a matching id.
   When the correct user object is found, invoke the callback with the user object as an argument.
 */
-
 // Do not edit the code below.
 var users = [
   {
@@ -184,15 +183,22 @@ var users = [
 // Do not edit the code above.
 
 // CODE HERE 
+const getUserById = (arr, id, callback) => {
+  for (let i = 0; i <arr.length; i++){
+    if (arr[i].id === id) {
+      return callback(arr[i])
+    }
+  }
+}
 
 
 // UNCOMMENT THE FUNCTION CALL BELOW
 // RUN THIS FILE WITH NODE
 // CHECK YOUR ANSWER
 
-// getUserById(users, '16t', user => {
-//   console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address) 
-// })
+getUserById(users, '16t', user => {
+  console.log('The user with the id 16t has the email of ' + user.email + ' the name of ' + user.name + ' and the address of ' + user.address) 
+})
 
 ////////// CHALLENGE //////////
 
@@ -211,7 +217,9 @@ var users = [
 */
 
 // CODE HERE
+const addingFactory = num1 => func = num2 => (num1 + num2) 
 
+console.log(addingFactory(2),func(3))
 /*
   Now that you have addingFactory, you can create other
   functions from it. 
@@ -221,11 +229,12 @@ var users = [
 
   Create a variable called addTen and set it equal to 
   the invocation of addingFactory passing in the number
-  10 as an arguemnt.
+  10 as an argument.
 */
 
 // CODE HERE
-
+let addTen = addingFactory(10)
+console.log(addTen)
 /*
   Now the inner function is stored in the addTen variable! 
 
@@ -237,7 +246,7 @@ var users = [
 */
 
 // CODE HERE
-
+console.log(addTen(20))
 /*
   Let's make another function from the addingFactory. 
 
@@ -250,3 +259,6 @@ var users = [
 */
 
 // CODE HERE
+
+let addNUMBER2 = addingFactory(2)
+console.log(addNUMBER2)
